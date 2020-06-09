@@ -1,0 +1,52 @@
+{
+  "errno": 0,
+  "data": {
+    "name": "燕燕专属爱心早餐店（北京沙河店）",
+    "description": "有商家提供配送服务1",
+    "deliveryTime": 25,
+    "score": 6.2,
+    "serviceScore": 5.1,
+    "foodScore": 5.3,
+    "rankRate": 69.2,
+    "minPrice": 0.01,
+    "deliveryPrice": 0,
+    "ratingCount": 999,
+    "sellCount": 999,
+    "bulletin": "麦麦脆汁鸡全新上市！鲜嫩又多汁，喜欢您来！",
+    "supports": [
+      {
+        "type": 0,
+        "description": "沙河西式快餐人气第一名"
+      },
+      {
+        "type": 1,
+        "description": "VC无限橙果汁全场8折"
+      },
+      {
+        "type": 2,
+        "description": "新用户立减17元（本优惠与新人首单红包不可同享），首次使用美团支付最高再减3元"
+      },
+      {
+        "type": 3,
+        "description": "该商家支持发票,请下单写好发票抬头"
+      },
+      {
+        "type": 4,
+        "description": "已加入“外卖保”计划,食品安全保障"
+      }
+    ],
+    "avatar": "http://imagesell.test.upcdn.net/t011ab651244734c183.jpg",
+    "pics": [
+      "http://imagesell.test.upcdn.net/%E8%AF%84%E4%BB%B71.jpg",
+      "http://imagesell.test.upcdn.net/%E8%AF%84%E4%BB%B72.jpg",
+      "http://imagesell.test.upcdn.net/%E8%AF%84%E4%BB%B73.jpg",
+      "http://imagesell.test.upcdn.net/%E8%AF%84%E4%BB%B74.jpg"
+    ],
+    "infos": [
+      "该商家支持发票,请下单写好发票抬头",
+      "品类:西餐，汉堡",
+      "北京市昌平区沙河镇巩华城大街76号",
+      "营业时间:00:00-24:00"
+    ]
+  }
+}
