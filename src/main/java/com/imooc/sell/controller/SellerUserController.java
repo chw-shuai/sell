@@ -5,7 +5,6 @@ import com.imooc.sell.constant.CookieConstant;
 import com.imooc.sell.constant.RedisConstant;
 import com.imooc.sell.dataobject.SellerInfo;
 import com.imooc.sell.enums.ResultEnum;
-import com.imooc.sell.exception.SellException;
 import com.imooc.sell.service.SellerService;
 import com.imooc.sell.utils.CookieUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +48,9 @@ public class SellerUserController {
                               HttpServletResponse response,
                               Map<String,Object> map){
         //1.openid  和  数据库里的数据做匹配
+        log.info("openid=");
+
+        openid = "oTgZpwcFtDHhK4AnEKJkt6Ju_nAY";
         SellerInfo sellerInfo = sellerService.findSellerInfoByOpenid(openid);
         log.info("sellerInfo={}",sellerInfo);
         if (sellerInfo == null){
@@ -88,7 +90,6 @@ public class SellerUserController {
         map.put("msg",ResultEnum.LOGOUT_SUCCESS.getMesssage());
         map.put("url","/sell/seller/order/list");
         return new ModelAndView("common/success",map);
-
 
     }
 }

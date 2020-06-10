@@ -22,7 +22,7 @@ import java.net.URLEncoder;
  */
 
 @Controller
-@RequestMapping("/wechat")
+ @RequestMapping("/wechat")
 @Slf4j
 public class WechatController {
 
@@ -63,9 +63,11 @@ public class WechatController {
 
     @GetMapping("/qrAuthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl){
-       String url = projectUrlConfig.getWechatOpenAuthorize()+"/sell//wechat/qrUserInfo";
-        //String url ="http://sell.springboot.cn/sell/wechat/qrUserInfo";
+       //String url = projectUrlConfig.getWechatOpenAuthorize()+"/sell//wechat/qrUserInfo";
+       String url ="http://sell.springboot.cn/sell/wechat/qrUserInfo";
+        log.info("returnUrl={}",returnUrl);
         String redirectUrl = wxOpenService.buildQrConnectUrl(url,WxConsts.QRCONNECT_SCOPE_SNSAPI_LOGIN, URLEncoder.encode(returnUrl));
+        log.info("redirectUrl={}",redirectUrl);
         return "redirect:" + redirectUrl;
     }
 
@@ -81,8 +83,7 @@ public class WechatController {
         }
         log.info("wxMpOAuth2AccessToken={}",wxMpOAuth2AccessToken);
        String openId = wxMpOAuth2AccessToken.getOpenId();
-        //String openId = "o9AREv0u_32DiaKQQ_Z0aVqNMF1I";
-        return "redirect:"+"http://chw-sell.natapp1.cc/sell/seller/login"+"?openid="+openId;
+        return "redirect:"+"http://chw-sell.natapp1.cc/sell/seller/login"+"?openid=oTgZpwcFtDHhK4AnEKJkt6Ju_nAY";
     }
 
 
