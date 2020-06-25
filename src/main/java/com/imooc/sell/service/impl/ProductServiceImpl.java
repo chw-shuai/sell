@@ -8,6 +8,9 @@ import com.imooc.sell.exception.SellException;
 import com.imooc.sell.repository.ProductInfoRepository;
 import com.imooc.sell.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,7 @@ import static com.imooc.sell.enums.ProductStatusEnum.UP;
  * @author 常红伟
  */
 @Service
+@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -32,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
     ProductService productService;
 
     @Override
+    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         ProductInfo productInfo = productInfoRepository.findOne(productId);
         return productInfo;
@@ -50,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return productInfoRepository.save(productInfo);
     }

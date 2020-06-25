@@ -37,11 +37,13 @@ public class SellerCategoryController {
      * 类目列表
      * @param map
      * @return
+     *
      */
     @GetMapping("/list")
     public ModelAndView list(Map<String,Object>map){
         List<ProductCategory> categoryList = categoryService.findAll();
         map.put("categoryList",categoryList);
+
         return new ModelAndView("category/list",map);
     }
 

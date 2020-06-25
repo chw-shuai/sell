@@ -5,13 +5,17 @@ import lombok.Data;
 
 
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @author 常红伟
  */
 @Data
-public class ProductInfoVO {
+public class ProductInfoVO implements Serializable {
+
+
+    private static final long serialVersionUID = 1121635981720412497L;
 
 
     @JsonProperty("id")

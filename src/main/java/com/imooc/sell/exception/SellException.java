@@ -1,10 +1,13 @@
 package com.imooc.sell.exception;
 
 import com.imooc.sell.enums.ResultEnum;
+import lombok.Getter;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @author 常红伟
  */
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;

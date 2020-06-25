@@ -5,12 +5,17 @@ import com.imooc.sell.enums.OrderStatusEnum;
 import com.imooc.sell.enums.PayStatusEnum;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class OrderVO {
+public class OrderVO implements Serializable {
+
+
+    private static final long serialVersionUID = -715925807817275853L;
+
 
     /**订单ID*/
     private String orderId;

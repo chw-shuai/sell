@@ -9,12 +9,11 @@ import com.imooc.sell.dto.OrderDTO;
 import com.imooc.sell.enums.OrderStatusEnum;
 import com.imooc.sell.enums.PayStatusEnum;
 import com.imooc.sell.enums.ResultEnum;
+import com.imooc.sell.exception.ResponseBankException;
 import com.imooc.sell.exception.SellException;
 import com.imooc.sell.repository.OrderDetailRepository;
 import com.imooc.sell.repository.OrderMasterRepository;
-import com.imooc.sell.service.OrderService;
-import com.imooc.sell.service.PayService;
-import com.imooc.sell.service.ProductService;
+import com.imooc.sell.service.*;
 import com.imooc.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -51,10 +50,16 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     PayService payService;
 
+    @Autowired
+    PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
+
 
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
 
         //订单id
@@ -68,7 +73,8 @@ public class OrderServiceImpl implements OrderService {
             //根据传进来的每个订单详情商品的id 查询 数据库 是否存在此商品
             ProductInfo productInfo = productService.findOne(orderDetail.getProductId());
             if(productInfo==null){
-                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+               throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+                // throw new ResponseBankException();
             }
             //计算订单总价
             orderAmount = productInfo.getProductPrice().multiply(new BigDecimal(orderDetail.getProductQuantity())).add(orderAmount);
@@ -99,6 +105,9 @@ public class OrderServiceImpl implements OrderService {
                 .map(e ->new CartDTO(e.getProductId(),e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送webSocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -171,6 +180,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderDTO finish(OrderDTO orderDTO) {
         //判断订单状态
         if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())){
@@ -188,11 +198,14 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
 
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public OrderDTO paid(OrderDTO orderDTO) {
         //判断订单状态
         if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())){

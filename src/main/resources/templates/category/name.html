@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        #name{
+            text-align: center;
+            height: 500px;
+            margin: 0 auto;
+            padding-top: 100px;
+            font-size: 200px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <button type="button" class="btn btn-success btn-lg btn-block" id="click">按钮</button>
+            </div>
+        </div>
+    </div>
+
+        <div id="name"></div>
+</div>
+<script>
+    var names = ["段成功","任宏毅","郝洁","杨军","杜雨璐","朱建丽","杨凯杰","吕凤仪",
+        "燕文静","赵斌","王涛","胡飞","常红伟","陈伟","郭守一","李军","李奇发","田通达"
+        ,"王宝彤","王庆庆庆","王新宇","王忠宝","张艺琳","赵嘉辉"];
+ $(document).ready(function() {
+    $("#click").click(function () {
+        var random=  Math.floor((Math.random()*25));
+        $("#name").text(names[random])
+
+    })
+
+ })
+</script>
+</body>
+</html>

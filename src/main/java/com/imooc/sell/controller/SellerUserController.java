@@ -80,16 +80,16 @@ public class SellerUserController {
                        HttpServletResponse response,
                        Map<String,Object>map){
         //1.从cookie里查询
-        Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
+        Cookie cookie = CookieUtil.get(request,CookieConstant.TOKEN);
+        log.info("cookie={}",cookie);
         if (cookie != null){
             //2.清除redis
             redisTemplate.opsForValue().getOperations().delete(String.format(RedisConstant.TOKEN_PREFIX,cookie.getValue()));
-            CookieUtil.set(response,CookieConstant.TOKEN,null,0);
             //3.清除token
+            CookieUtil.set(response,CookieConstant.TOKEN,null,0);
         }
         map.put("msg",ResultEnum.LOGOUT_SUCCESS.getMesssage());
         map.put("url","/sell/seller/order/list");
         return new ModelAndView("common/success",map);
-
     }
 }

@@ -10,6 +10,8 @@ import com.imooc.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -115,7 +117,18 @@ public class SellerProductController {
 
     }
 
+
+    /**
+     * @CachePut  代表 每次 都会执行方法，每次执行完都会将返回结果重新设置进redis
+     * @CacheEvict  表示 执行完 该方法 将缓存 里面的数据清除
+     * key可以进行动态设置   使用SpringEL 表达式  #参数名称
+     * condition 属性 用来指定参数满足什么条件 就不用执行方法体而是直接去缓存
+     * unless  属性  表示 如果返回值不 怎么怎么样   就执行缓存
+     * @return
+     */
     @PostMapping("/save")
+   // @CachePut(cacheNames = "product",key = "123")
+   // @CacheEvict(cacheNames = "product",key = "123")
     public ModelAndView save(@Valid ProductForm productForm,
                              BindingResult bindingResult,
                              Map<String,Object>map){

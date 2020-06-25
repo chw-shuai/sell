@@ -50,9 +50,6 @@ public enum ResultEnum {
     LOGOUT_SUCCESS(26,"等出成功"),
 
 
-
-
-
     ;
     /**
      *

@@ -11,6 +11,7 @@ import com.imooc.sell.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,12 @@ public class BuyerProductController {
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * @Cacheable  第一次访问会执行方法里面的内容，并将返回值设置进redis，下次访问就不会进入方法而是直接在redis取
+     * @return
+     */
     @GetMapping("/list")
+   // @Cacheable(cacheNames = "product",key = "123")
     public ResultVO list(){
 
         //1.查询所有上架商品

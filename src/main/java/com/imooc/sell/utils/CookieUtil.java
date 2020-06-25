@@ -1,5 +1,7 @@
 package com.imooc.sell.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,7 @@ import java.util.Map;
 /**
  * @author 常红伟
  */
+@Slf4j
 public class CookieUtil {
 
     /**
@@ -30,7 +33,7 @@ public class CookieUtil {
     }
 
     /**
-     * 获取Cookie
+     * 根据request请求获取Cookie
      * @param request
      * @param name
      * @return
@@ -52,6 +55,7 @@ public class CookieUtil {
      */
     private static Map<String,Cookie> readCookieMap(HttpServletRequest request){
         Map<String,Cookie >cookieMap = new HashMap<>();
+        //获取request里面的cookie，cookie是一个map的集合
         Cookie [] cookies = request.getCookies();
         if (cookies != null){
             for (Cookie cookie : cookies){

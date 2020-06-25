@@ -25,9 +25,11 @@ public class WechatMpConfig {
     @Bean
     public WxMpConfigStorage wxMpConfigStorage(){
         WxMpInMemoryConfigStorage wxMpConfigStorage = new WxMpInMemoryConfigStorage();
-     //   wxMpConfigStorage.setAppId("wxa2076af2b8441fec");
-        wxMpConfigStorage.setAppId(wechatAccountConfig.getMpAuthrizeAppId());
-        wxMpConfigStorage.setSecret(wechatAccountConfig.getMpAppSecret());
+       // wxMpConfigStorage.setAppId(wechatAccountConfig.getMpAuthrizeAppId());
+      //  wxMpConfigStorage.setSecret(wechatAccountConfig.getMpAppSecret());
+        wxMpConfigStorage.setAppId(wechatAccountConfig.getTemplateAppId());
+          wxMpConfigStorage.setSecret(wechatAccountConfig.getTemplateAppsecret());
+
         return wxMpConfigStorage;
     }
 }

@@ -3,13 +3,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.43.147/sell?&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=true
+    url: jdbc:mysql://192.168.31.57/sell?&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=true
   jpa:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
   redis:
-    host: 192.168.43.147
+    host: 192.168.31.57
     port: 6379
 server:
   context-path: /sell
@@ -30,8 +30,6 @@ wechat:
   mpAppSecret: da3d0ded3e2ceb417ffb690afe53db77
 
 
-
-
   openAppId: wx6ad144e54af67d87
   openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
 
@@ -42,7 +40,12 @@ wechat:
   keyPath: C:/Users/55346/Desktop/sell/coding-117-develop/coding-117/doc/h5.p12
   #异步通知地址
   notifyUrl: http://chw-sell.natapp1.cc/sell/pay/notify
-
+  #微信模板推送ID
+  templateId:
+    orderStatus: zEYz06NPitytl4NaBIRky4A8LIlKbmAXbKrmQDNMBzw
+  templateAppId: wxa2076af2b8441fec
+  templateAppsecret: da3d0ded3e2ceb417ffb690afe53db77
+  templateOpenid: oTgZpwcFtDHhK4AnEKJkt6Ju_nAY
 projectUrl:
   wechatMpAuthorize: http://chw-sell.natapp1.cc
   wechatOpenAuthorize: http://chw-sell.natapp1.cc

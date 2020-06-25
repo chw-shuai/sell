@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  * @author 常红伟
  */
@@ -54,4 +56,25 @@ public class WechatAccountConfig {
     private String  notifyUrl;
 
     private String mpAuthrizeAppId;
+
+    /**
+     * 微信模板id
+     */
+    private Map<String,String> templateId;
+
+    /**
+     * 微信模板appid
+     */
+    private String templateAppId;
+
+    /**
+     * 微信模板Appsecret
+     */
+    private String templateAppsecret;
+
+    /**
+     * 微信模板Openid
+     */
+    private String templateOpenid;
+
 }
