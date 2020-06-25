@@ -1,0 +1,50 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.31.57/sell?&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=true
+  jackson:
+    default-property-inclusion: non_null
+  redis:
+    host: 192.168.31.57
+    port: 6379
+server:
+  context-path: /sell
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: /var/log/tomcat/
+#  file: C:\Users\55346\Desktop\sell\sell.log
+#  level:
+#    com.imooc.LoggerTest: debug
+
+wechat:
+  #授权  测试公众账号
+  mpAuthrizeAppId: wxa2076af2b8441fec
+  #支付 师兄公众账号
+  mpAppId: wxd898fcb01713c658
+  #公众号 测试提供的AppSecret   支付不需用
+  mpAppSecret: da3d0ded3e2ceb417ffb690afe53db77
+
+
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+
+  #支付/商户号
+  mchId: 1483469312
+  mchKey: 098F6BCD4621D373CADE4E832627B4F6
+  #证书路径    发起支付不需要证书     退款需要
+  keyPath: C:/Users/55346/Desktop/sell/coding-117-develop/coding-117/doc/h5.p12
+  #异步通知地址
+  notifyUrl: http://chw-sell.natapp1.cc/sell/pay/notify
+  #微信模板推送ID
+  templateId:
+    orderStatus: zEYz06NPitytl4NaBIRky4A8LIlKbmAXbKrmQDNMBzw
+  templateAppId: wxa2076af2b8441fec
+  templateAppsecret: da3d0ded3e2ceb417ffb690afe53db77
+  templateOpenid: oTgZpwcFtDHhK4AnEKJkt6Ju_nAY
+projectUrl:
+  wechatMpAuthorize: http://chw-sell.natapp1.cc
+  wechatOpenAuthorize: http://chw-sell.natapp1.cc
+  sell: http://chw-sell.natapp1.cc
